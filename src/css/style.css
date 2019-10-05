@@ -6,7 +6,7 @@ body, .bg-dark-custom {
     background-color: rgb(20, 20, 20);
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
     color: rgb(212, 212, 212);
 }
 
@@ -33,4 +33,16 @@ h1, h2 {
 .navbar .nav-link:hover {
     color: rgb(143, 141, 141);
     font-weight: bold;
+}
+
+.left-align-box h1, 
+.left-align-box h2, 
+.left-align-box h3,
+.left-align-box h4,
+.left-align-box p{
+    text-align: left;
+}
+
+.planet-facts-box p{
+    margin-bottom: 0px;
 }
