@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+}
+
+body, .bg-dark-custom {
+    background-color: rgb(20, 20, 20);
+}
+
+h1, h2 {
+    color: rgb(212, 212, 212);
+}
+
+ p {
+    color: rgb(156, 153, 153);
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar .nav-link {
+    color: rgb(216, 213, 213);
+    font-weight: bold;
+}
+
+.sidebar-heading {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: rgb(216, 213, 213);
+    text-transform: uppercase;
+}
+
+.navbar .nav-link:hover {
+    color: rgb(143, 141, 141);
+    font-weight: bold;
+}
