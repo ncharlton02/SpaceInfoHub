@@ -1,31 +1,36 @@
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
-body{
+body, .bg-dark-custom {
     background-color: rgb(20, 20, 20);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
 
-.center-text h2{
+h1, h2 {
     color: rgb(212, 212, 212);
 }
 
-.center-text p{
+ p {
     color: rgb(156, 153, 153);
 }
 
-.navbar{
+.navbar {
     margin-bottom: 30px;
 }
 
-.navbar .nav-link{
+.navbar .nav-link {
     color: rgb(216, 213, 213);
     font-weight: bold;
 }
 
+.sidebar-heading {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: rgb(216, 213, 213);
+    text-transform: uppercase;
+}
 
-.navbar .nav-link:hover{
+.navbar .nav-link:hover {
     color: rgb(143, 141, 141);
     font-weight: bold;
 }
