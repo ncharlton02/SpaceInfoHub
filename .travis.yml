@@ -1,0 +1,19 @@
+branches:
+  only:
+  - release
+
+language: node_js
+node_js:
+  - "8"
+
+script:
+  - echo Building App!
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_API_TOKEN 
+  keep_history: true
+  local_dir: src/
+  on:
+    branch: release
