@@ -45,9 +45,9 @@ let info = [
     planets[planet.id] = planet;
 });
 
-let selectedPlanet;
-let planetTitleText = document.getElementById("planet-title");
-let planetDescText = document.getElementById("planet-desc");
+const planetTitleText = document.getElementById("planet-title");
+const planetDescText = document.getElementById("planet-desc");
+var selectedPlanet;
 
 function selectPlanet(planet) {
     if (!planet)
