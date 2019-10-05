@@ -63,11 +63,22 @@ function drawScene(gl, programInfo, buffers) {
         false,
         modelViewMatrix);
 
+    let color = getPlanetColor();
+    gl.uniform4fv(
+        programInfo.uniformLocations.planetColor, color);
+
     {
         const offset = 0;
         const vertexCount = 4;
         gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
+}
+
+function getPlanetColor(){
+    if(!selectedPlanet)
+        return [1.0, 0.0, 1.0, 1.0];
+
+    return selectedPlanet.color;
 }
 
 const vsSource = `
@@ -82,9 +93,13 @@ void main() {
 `;
 
 const fsSource = `
-    void main() {
-      gl_FragColor = vec4(0.5, 1.0, 1.0, 1.0);
-    }
+precision mediump float;
+
+uniform vec4 uPlanetColor;
+
+void main() {
+    gl_FragColor = uPlanetColor;
+}
   `;
 
 function initShaderProgram(gl, vsSource, fsSource) {
@@ -97,7 +112,7 @@ function initShaderProgram(gl, vsSource, fsSource) {
     gl.linkProgram(shaderProgram);
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-        alert('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
+        console.log('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
         return null;
     }
 
@@ -111,7 +126,7 @@ function loadShader(gl, type, source) {
     gl.compileShader(shader);
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        alert('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
+        console.log('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
         gl.deleteShader(shader);
         return null;
     }
@@ -155,27 +170,30 @@ const programInfo = {
     uniformLocations: {
         projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
         modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
+        planetColor: gl.getUniformLocation(shaderProgram, 'uPlanetColor')
     },
 };
 
 const squareBuffer = initBuffers(gl);
 
+function onAnimationFrame(){
+    updateCanvasSize();
+    render();
+}
 
 function render() {
     drawScene(gl, programInfo, squareBuffer);
 
-    updateCanvasSize();
-    requestAnimationFrame(render);
+    requestAnimationFrame(onAnimationFrame);
 }
 
 function updateCanvasSize() {
     if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientWidth) {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientWidth;
-    }
 
-    gl.viewport(0, 0, gl.canvas.clientWidth, gl.canvas.clientHeight);
-    render();
+        gl.viewport(0, 0, gl.canvas.clientWidth, gl.canvas.clientHeight);
+    }
 }
 
-requestAnimationFrame(render);
+requestAnimationFrame(onAnimationFrame);
