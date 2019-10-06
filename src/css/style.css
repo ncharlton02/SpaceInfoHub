@@ -10,15 +10,24 @@ h1, h2, h3, h4 {
     color: rgb(212, 212, 212);
 }
 
- p {
+ p, .table-striped td {
     color: rgb(156, 153, 153);
+}
+
+
+.table-striped th, .table-striped td{
+    padding-right: 30px;
+}
+
+.table-striped th{
+    border-bottom: 2px solid gray;
 }
 
 .navbar {
     margin-bottom: 30px;
 }
 
-.navbar .nav-link {
+.navbar .nav-link, .table-striped th {
     color: rgb(216, 213, 213);
     font-weight: bold;
 }

@@ -26,20 +26,44 @@
             <a class="nav-link" href="about.html">About</a>
         </nav>
     </header>
-    
-    <div class="align-items-center w-100 h-100">
 
-        <div class="container center-text">
-            <h2>About</h2>
-            <p>
-                Space Info Hub is an entry for the 2019 Congressional App Challenge.
-            </p>
+    <div class="h-100 container-fluid">
+        <div class="row">
+            <div class="col-5 w-100 mx-2 mb-5">
+                <h2 class="mb-5">Past Launches</h2>
 
-            <p>
-                It was built by <a href="mailto:ncharlton002@gmail.com">Noah Charlton</a> and
-                <a href="mailto:Samurott2004@gmail.com">Aidan Smith</a>
-            </p>
+                <table class="table-striped w-100">
+                    <thead>
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Mission Name</th>
+                            <th>Launch Date (UTC)</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="past-launch-table" class="b-none">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-5 w-100  mx-2">
+                <h2 class="mb-5">Upcoming Launches</h2>
+
+                <table class="table-striped w-100">
+                    <thead>
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Mission Name</th>
+                            <th>Launch Date (UTC)</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcoming-launch-table" class="b-none">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
+    <script src="js/spacex.js"></script>
 </body>
