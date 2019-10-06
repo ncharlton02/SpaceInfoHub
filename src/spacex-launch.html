@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SpaceX Launch</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/std.js"></script>
+</head>
+
+
+<body class="">
+    <header>
+        <nav class="navbar justify-content-center">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="planets.html">The Planets</a>
+            <a class="nav-link" href="spacex.html">SpaceX</a>
+            <a class="nav-link" href="about.html">About</a>
+        </nav>
+    </header>
+
+    <div class="mx-5" style="max-width: 960px">
+        <div style="display:inline-block; margin-bottom:50px">
+            <button onclick="gotoPrevLaunch()">Prev Mission</button>
+            <button onclick="gotoNextLaunch()">Next Mission</button>
+        </div>
+
+        <h2 id="title-heading" class="mb-3"></h2>
+
+        <p class="mb-5" id="launch-details"></p>
+
+        <div id="facts-box" class="facts-box">
+        </div>
+    </div>
+
+    <script>
+        let url = new URL(window.location.href);
+        let flight_number = url.searchParams.get("flight_number");
+
+        document.title = "SpaceX Launch " + flight_number;
+        document.getElementById("title-heading").innerHTML = "Launch " + flight_number;
+
+        httpGetAsync("https://api.spacexdata.com/v3/launches/" + flight_number, parseFlightData);
+
+        function parseFlightData(json) {
+            json = JSON.parse(json);
+            console.log(json);
+
+            let info = [
+                ["TBD", json.tbd],
+                ["Launch Date", new Date(json.launch_date_utc).toString()],
+                ["Launch Site", json.launch_site.site_name_long],
+                ["Ships Used", json.ships],
+                ["Launch Successful", json.launch_success]
+            ];
+            addLinks(info, json);
+            addRocketDetails(info, json);
+
+            let html = [];
+
+            info.forEach(fact => {
+                if (fact.length == 2) {
+                    if(fact[1] === null)
+                        fact[1] = "Unknown";
+
+                    html.push("<p><b>" + fact[0] + "</b>: " + fact[1] + "</p>");
+                } else {
+                    html.push(fact);
+                }
+            });
+
+            document.getElementById("facts-box").innerHTML = html.join("");
+            document.getElementById("title-heading").innerHTML = "Launch " + flight_number + ": " + json.mission_name;
+            document.getElementById("launch-details").innerHTML = json.details;
+        }
+
+        function addLinks(info, json) {
+            function addLink(displayName, name) {
+                let data = json.links[name];
+
+                if (data != null) {
+                    if (Array.isArray(data)) {
+                        return;
+                    }
+
+                    let link = "<a href=\"" + data + "\">" + data + "</a>";
+                    info.push([displayName, link]);
+                }
+            }
+
+            info.push('<h4 class="mb-2 mt-4">Links</h4>');
+            addLink("Reddit Campaign", "reddit_campaign");
+            addLink("Reddit Launch", "reddit_launch");
+            addLink("Wikipedia Article", "wikipedia")
+            addLink("Video Link", "video_link");
+            addLink("Press Kit", "presskit");
+            addLink("Mission Patch", "mission_patch");
+        }
+
+        function addRocketDetails(info, json) {
+            if (!json.rocket)
+                return;
+            var rocket = json.rocket;
+
+            info.push('<h4 class="mb-2 mt-4">Rocket Details</h4>');
+            info.push(["Rocket Name", rocket.rocket_name]);
+            info.push(["Rocket ID", rocket.rocket_id]);
+
+            if (rocket.fairings) {
+                info.push(["Fairing reused", rocket.fairings.reused]);
+                info.push(["Fairing recovered", rocket.fairings.recovered]);
+            }
+            
+            addLowerStageInfo(info, rocket.first_stage.cores);
+        }
+
+        function addLowerStageInfo(info, cores){
+            if(!cores){
+                return
+            }
+
+            for(var i in cores){
+                let core = cores[i];
+                info.push('<h5 class="mb-2 mt-4">Core ' + i  +'</h5>');
+                info.push(["Block", core.block]);
+                info.push(["Flight", core.flight]);
+                info.push(["Serial Number", core.core_serial]);
+                info.push(["Successful Landing", core.land_success]);
+                info.push(["Landing Type", core.landing_type])
+                info.push(["Landing Location", core.landing_vehicle])
+            }
+        }
+
+        function gotoNextLaunch() {
+            gotoLaunch(parseInt(flight_number) + 1);
+        }
+
+        function gotoPrevLaunch() {
+            gotoLaunch(parseInt(flight_number) - 1);
+        }
+
+        function gotoLaunch(number) {
+            url.searchParams.set("flight_number", number);
+            location.href = url.toString();
+        }
+    </script>
+</body>
