@@ -27,9 +27,41 @@
         </nav>
     </header>
 
-    <div class="h-100 container-fluid">
+    <div class="container-fluid h-100">
         <div class="row">
-            <div class="col-5 w-100 mx-2 mb-5">
+            <div class="mx-2 mb-5 col-5" style="max-width:960px">
+                <h3 class="mb-3">Next Launch:</h3>
+                <table class="table-striped" style="border: solid thin gray; background-color:rgb(10, 10, 10)" id="upcoming-launch-info">
+                    <thead>
+                        <tr >
+                            <th>
+                                <h5 id="next-launch-number"></h5>
+                            </th style="border-bottom: none">
+                            <th>
+                                <h5 id="next-launch-name"></h5>
+                                </td>
+                            <th>
+                                <h5 id="next-launch-date"></h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" class="py-2">
+                                <h6 id="next-launch-countdown"></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" id="next-launch-details">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 w-100 mx-2 mb-5">
                 <h2 class="mb-5">Past Launches</h2>
 
                 <table class="table-striped w-100">
@@ -46,7 +78,7 @@
                 </table>
             </div>
 
-            <div class="col-5 w-100  mx-2">
+            <div class="col-md-5 w-100  mx-2">
                 <h2 class="mb-5">Upcoming Launches</h2>
 
                 <table class="table-striped w-100">
