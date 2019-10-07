@@ -40,6 +40,10 @@
 
         <div id="facts-box" class="facts-box">
         </div>
+
+        <footer class="mt-5">
+            <h5>API Built using <a href="https://spacexdata.com/">https://spacexdata.com/</a></h5>
+        </footer>
     </div>
 
     <script>
@@ -69,7 +73,7 @@
 
             info.forEach(fact => {
                 if (fact.length == 2) {
-                    if(fact[1] === null)
+                    if (fact[1] === null)
                         fact[1] = "Unknown";
 
                     html.push("<p><b>" + fact[0] + "</b>: " + fact[1] + "</p>");
@@ -119,18 +123,18 @@
                 info.push(["Fairing reused", rocket.fairings.reused]);
                 info.push(["Fairing recovered", rocket.fairings.recovered]);
             }
-            
+
             addLowerStageInfo(info, rocket.first_stage.cores);
         }
 
-        function addLowerStageInfo(info, cores){
-            if(!cores){
+        function addLowerStageInfo(info, cores) {
+            if (!cores) {
                 return
             }
 
-            for(var i in cores){
+            for (var i in cores) {
                 let core = cores[i];
-                info.push('<h5 class="mb-2 mt-4">Core ' + i  +'</h5>');
+                info.push('<h5 class="mb-2 mt-4">Core ' + i + '</h5>');
                 info.push(["Block", core.block]);
                 info.push(["Flight", core.flight]);
                 info.push(["Serial Number", core.core_serial]);
