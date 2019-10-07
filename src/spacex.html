@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Space Info Hub: SpaceX</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+
+<body class="text-center">
+    <header>
+        <nav class="navbar justify-content-center">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="planets.html">The Planets</a>
+            <a class="nav-link" href="spacex.html">SpaceX</a>
+            <a class="nav-link" href="about.html">About</a>
+        </nav>
+    </header>
+
+    <div class="container-fluid h-100">
+        <div class="row">
+            <div class="mx-2 mb-5 col-5" style="max-width:960px">
+                <h3 class="mb-3">Next Launch:</h3>
+                <table class="table-striped" style="border: solid thin gray; background-color:rgb(10, 10, 10)" id="upcoming-launch-info">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h5 id="next-launch-number"></h5>
+                            </th style="border-bottom: none">
+                            <th>
+                                <h5 id="next-launch-name"></h5>
+                                </td>
+                            <th>
+                                <h5 id="next-launch-date"></h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" class="py-2">
+                                <h6 id="next-launch-countdown"></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" id="next-launch-details">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 w-100 mx-2 mb-5">
+                <h2 class="mb-5">Past Launches</h2>
+
+                <table class="table-striped w-100">
+                    <thead>
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Mission Name</th>
+                            <th>Launch Date (UTC)</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="past-launch-table" class="b-none">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-5 w-100  mx-2">
+                <h2 class="mb-5">Upcoming Launches</h2>
+
+                <table class="table-striped w-100">
+                    <thead>
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Mission Name</th>
+                            <th>Launch Date (UTC)</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcoming-launch-table" class="b-none">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="mt-5">
+            <h5>API Built using <a href="https://spacexdata.com/">https://spacexdata.com/</a></h5>
+        </footer>
+    </div>
+
+    <script src="js/std.js"></script>
+    <script src="js/spacex.js"></script>
+</body>

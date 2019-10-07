@@ -6,19 +6,28 @@ body, .bg-dark-custom {
     background-color: rgb(20, 20, 20);
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     color: rgb(212, 212, 212);
 }
 
- p {
+ p, .table-striped td {
     color: rgb(156, 153, 153);
+}
+
+
+.table-striped th, .table-striped td{
+    padding-right: 30px;
+}
+
+.table-striped th{
+    border-bottom: 2px solid gray;
 }
 
 .navbar {
     margin-bottom: 30px;
 }
 
-.navbar .nav-link {
+.navbar .nav-link, .table-striped th {
     color: rgb(216, 213, 213);
     font-weight: bold;
 }
@@ -43,6 +52,6 @@ h1, h2, h3, h4 {
     text-align: left;
 }
 
-.planet-facts-box p{
+.facts-box p{
     margin-bottom: 0px;
 }
