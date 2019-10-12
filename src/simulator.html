@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Space Info Hub: Home</title>
+    <title>Space Info Hub: Orbital Simulator</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" href="favicon.ico">
 
@@ -14,9 +14,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        #controlBox select{
+            border-radius: 5px;
+            font-weight: bold;
+            background: black;
+            color: red;
+            outline: none;
+        }
+
+        #controlBox select option{
+            color: red;
+            outline: none;
+        }
+
+        #controlBox button{
+            border-radius: 5px;
+            font-weight: bold;
+            background: black;
+            color: red;
+            border-width: thin;
+        }
+    </style>
 </head>
 
-<body class="text-center">
+
+<body>
     <header>
         <nav class="navbar justify-content-center">
             <a class="nav-link" href="index.html">Home</a>
@@ -27,16 +51,21 @@
         </nav>
     </header>
 
-    <div class="d-flex align-items-center w-100 h-100">
+    <div class="mx-5">
+        <h3 id="simulation-name" class="pb-3">Current Simulation: Planet</h3>
 
-        <div class="container center-text">
-            <h2>Space Info Hub</h2>
-            <p>
-                An entry for the 2019 Congressional App Challenge
-            </p>
+        <div id="controlBox" style="display:block">
+            <select class="px-3 py-1" onchange="onSimulationSelected()" id="simulation-selctor"></select>
+            <button class="mx-2 px-3" onclick="applySimulation(simulation)">Reset Simulation</button>
         </div>
     </div>
 
-</body>
 
-</html>
+    <div id="canvas-container" class="w-100 h-100">
+        <canvas id="canvas">
+
+        </canvas>
+    </div>
+
+    <script src="js/simulator.js"></script>
+</body>
