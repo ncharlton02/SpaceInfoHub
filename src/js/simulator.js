@@ -121,7 +121,7 @@ setInterval(function () {
         });
     });
 
-}, 1000);
+}, 250);
 
 //
 // Physics Code
