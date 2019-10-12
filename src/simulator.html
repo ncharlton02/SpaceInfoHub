@@ -14,10 +14,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        #controlBox select{
+            border-radius: 5px;
+            font-weight: bold;
+            background: black;
+            color: red;
+            outline: none;
+        }
+
+        #controlBox select option{
+            color: red;
+            outline: none;
+        }
+
+        #controlBox select{
+
+        }
+
+        #controlBox button{
+            border-radius: 5px;
+            font-weight: bold;
+            background: black;
+            color: red;
+            border-width: thin;
+        }
+    </style>
 </head>
 
 
-<body class="text-center">
+<body>
     <header>
         <nav class="navbar justify-content-center">
             <a class="nav-link" href="index.html">Home</a>
@@ -26,7 +53,17 @@
             <a class="nav-link" href="about.html">About</a>
         </nav>
     </header>
-    
+
+    <div class="mx-5">
+        <h3 id="simulation-name" class="pb-3">Current Simulation: Planet</h3>
+
+        <div id="controlBox" style="display:block">
+            <select class="px-3 py-1" onchange="onSimulationSelected()" id="simulation-selctor"></select>
+            <button class="mx-2 px-3" onclick="applySimulation(simulation)">Reset Simulation</button>
+        </div>
+    </div>
+
+
     <div id="canvas-container" class="w-100 h-100">
         <canvas id="canvas">
 

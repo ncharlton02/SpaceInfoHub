@@ -1,10 +1,77 @@
+const simulations = [
+    {
+        "name": "One Planet",
+        "onInit": function () {
+            createBody("Earth", 100_000, 10, 200, 250, "green", 0, 4.2);
+            createBody("Sun", 5_000_000_000, 25, 400, 250, "yellow", 0, 0);
+        }
+    },
+    {
+        "name": "Unstable Binary System",
+        "onInit": function(){
+            createBody("Star 2", 5_000_000_000, 25, 300, 350, "yellow", 0, 3);
+            createBody("Star 2", 5_000_000_000, 25, 500, 350, "yellow", 0, -3);
+            createBody("Planet", 100_000, 10, 100, 350, "orange", 0, 3.5);
+        }
+    },
+    {
+        "name": "Elliptical Planets (No Collision)",
+        "onInit": function(){
+            createBody("Planet 1", 1000, 10, 400, 50, "green", -3, 0);
+            createBody("Planet 2", 1000, 10, 400, 50, "orange", -2.8, 0);
+            createBody("Planet 3", 1000, 10, 400, 50, "red", -2.5, 0);
+            createBody("Planet 4", 1000, 10, 400, 50, "blue", -2.25, 0);
+            createBody("Planet 5", 1000, 10, 400, 50, "white", -2, 0);
+            createBody("Planet 6", 1000, 10, 400, 50, "gray", -1.75, 0);
+            createBody("Planet 6", 1000, 10, 400, 50, "purple", -1.5, 0);
+            createBody("Sun", 5_000_000_000, 25, 400, 400, "yellow", 0, 0);
+        }
+    },
+    {
+        "name": "Multiple Planets",
+        "onInit": function(){
+            createBody("Planet 1", 100_000, 10, 350, 350, "blue", 0, 8.2);
+            createBody("Planet 2", 100_000, 10, 300, 350, "red", 0, 6.2);
+            createBody("Planet 3", 100_000, 10, 200, 350, "green", 0, 4.2);
+            createBody("Comet", 1_000, 3, 100, 100, "white", 0, 1.5);
+            createBody("Sun", 5_000_000_000, 25, 400, 350, "yellow", 0, 0);
+        }
+    },
+]
+
+const simulationSelect = document.getElementById("simulation-selctor");
+
+initSimulationSelector();
+
+function initSimulationSelector(){
+    let html = [];
+
+    for(var i = 0; i < simulations.length; i++){
+        html.push('<option value="' + i + '">');
+        html.push(simulations[i].name);
+        html.push("</option>");
+    }
+
+    simulationSelect.innerHTML = html.join("");
+}
+
+function onSimulationSelected(){
+    applySimulation(simulations[simulationSelect.value]);
+}
+
+//
+// Simulator
+//
 const distanceScale = 100_000;
 const massScale = 1_000_000_000_000_000_000;
+
+const simulationName = document.getElementById("simulation-name");
 const canvas = document.getElementById("canvas");
 const canvas_container = document.getElementById("canvas-container");
 const ctx = canvas.getContext("2d");
 let pts = [];
 let bodies = [];
+let simulation;
 
 function onAnimationFrame() {
     syncCanvasSize();
@@ -14,13 +81,22 @@ function onAnimationFrame() {
     requestAnimationFrame(onAnimationFrame);
 }
 
+function applySimulation(s) {
+    simulation = s;
+    bodies = [];
+    pts = [];
+
+    simulationName.innerHTML = "Current Simulation: " + simulation.name;
+    simulation.onInit();
+}
+
 function update() {
     bodies.forEach(b => updateBody(b));
 }
 
 function syncCanvasSize() {
     canvas.width = canvas_container.clientWidth;
-    canvas.height = canvas_container.clientWidth;
+    canvas.height = canvas_container.clientHeight;
 
 }
 
@@ -50,10 +126,6 @@ setInterval(function () {
 //
 // Physics Code
 //
-
-createBody("Earth", 10_000_000, 10, 90, 400, "green", 0, 3.2);
-createBody("Moon", 100_000, 2, 100, 400, "white", 0.0, .8 + 3.2);
-createBody("Sun", 5_000_000_000, 25, 400, 400, "yellow", 0, 0);
 
 function createBody(name, mass, radius, x, y, color, xVel, yVel) {
     if (!name || !mass || !radius || !x || !y || !color)
@@ -157,4 +229,5 @@ function createVectorMagAngle(angle, mag) {
     return new Vector(Math.cos(angle) * mag, Math.sin(angle) * mag);
 }
 
+applySimulation(simulations[0]);
 requestAnimationFrame(onAnimationFrame);
