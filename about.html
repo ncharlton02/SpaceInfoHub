@@ -27,13 +27,14 @@
             <a class="nav-link" href="about.html">About</a>
         </nav>
     </header>
-    
+
     <div class="align-items-center w-100 h-100">
 
         <div class="container center-text">
             <h2>About</h2>
             <p>
-                Space Info Hub is an entry for the 2019 Congressional App Challenge.
+                Space Info Hub is an entry for the 
+                <a href="https://www.congressionalappchallenge.us">2019 Congressional App Challenge</a>
             </p>
 
             <p>
@@ -41,6 +42,36 @@
                 <a href="mailto:Samurott2004@gmail.com">Aidan Smith</a>
             </p>
         </div>
+
+        <div stlye="text-align:center">
+            <div class="box-link mt-5" style="margin:auto;max-width:425px">
+                <a href="https://github.com/DevOrc/SpaceInfoHub">
+                    <div class="px-2" style="text-align: left">
+                        <div class="mb-3">
+                            <img style="display: inline-block" src="images/github-mark-white.png">
+                            <h4 class="ml-3" style="display: inline-block; color:#007aff">DevOrc/SpaceInfoHub</h4>
+                        </div>
+
+                        <p id="github-desc-box"></p>
+
+                        <div>
+                            <h5 style="margin-right: 25px; display: inline-block" id="github-star-count"></h5>
+                            <h5 style="display: inline-block" id="github-fork-count"></h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
     </div>
 
+    <script src="js/std.js"></script>
+    <script>
+        httpGetAsync("https://api.github.com/repos/DevOrc/SpaceInfoHub", function (json) {
+            json = JSON.parse(json);
+            document.getElementById("github-desc-box").innerHTML = json.description;
+            document.getElementById("github-star-count").innerHTML = "Stars: " + json.stargazers_count;
+            document.getElementById("github-fork-count").innerHTML =  "Forks: " + json.forks_count;
+        });
+    </script>
 </body>
