@@ -15,9 +15,7 @@
         crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet">
 
-    <style>
-
-    </style>
+    <script src="js/gl-matrix.js"></script>
 </head>
 
 <body class="text-center">
@@ -41,10 +39,15 @@
         </div>
     </div>
 
-    <img src="images/planet.png" class="my-5">
+    <div>
+        <canvas class="w-50" id="planet-canvas">
+        </canvas>
+    </div>
 
-    <div class="container-fluid">
-        <div class="box-link row mx-5 justify-content-center">
+
+    <div class="container-fluid justify-content-center">
+
+        <div class="box-link row mx-5">
             <a href="planets.html" class="col">
                 <div>
                     <h3>The Planets</h3>
@@ -70,8 +73,14 @@
 
 
     </div>
+    <script>
+        selectedPlanet = {
+            "texture": "images/8k_earth_daymap.jpg",
+        };
 
-
+        updateTexture = true;
+    </script>
+    <script src="js/planet_renderer.js"></script>
 </body>
 
 </html>
