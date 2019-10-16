@@ -333,5 +333,5 @@ function createVectorMagAngle(angle, mag) {
     return new Vector(Math.cos(angle) * mag, Math.sin(angle) * mag);
 }
 
-applySimulation(simulations[4]);
+applySimulation(simulations[0]);
 requestAnimationFrame(onAnimationFrame);
