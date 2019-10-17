@@ -102,23 +102,26 @@ function clearBodyBuilder() {
 
 function buildCustomSimulation() {
     let bodyForms = bodyBuilderContainer.getElementsByClassName("simulation-form");
-    
+
     Array.from(bodyForms).forEach(form => parseBodyForm(form));
+
+    paused = false;
+    simulationSpeedButton.innerHTML = "Pause Simulation";
 }
 
-function parseBodyForm(form){
-    function nonNull(x){
-        if(!x){
+function parseBodyForm(form) {
+    function nonNull(x) {
+        if (!x) {
             throw new Error();
         }
 
         return x;
     }
 
-    try{
+    try {
         let name = nonNull(form.querySelector("#body-name-box").value);
         let color = nonNull(form.querySelector("#body-color-box").value);
-        let mass = nonNull(form.querySelector("#body-mass-box").value) * 10e5;
+        let mass = nonNull(form.querySelector("#body-mass-box").value);
         let radius = nonNull(form.querySelector("#body-radius-box").value);
         let initalX = nonNull(form.querySelector("#body-ix-box").value);
         let initalY = nonNull(form.querySelector("#body-iy-box").value);
@@ -126,7 +129,7 @@ function parseBodyForm(form){
         let initalVelY = nonNull(form.querySelector("#body-ively-box").value);
 
         createBody(name, mass, radius, initalX, initalY, color, initalVelX, initalVelY);
-    }catch(e){
+    } catch (e) {
         console.log(e);
         form.style = "border: red solid thin";
 
@@ -166,6 +169,7 @@ function onSimulationSelected() {
 const distanceScale = 100_000;
 const massScale = 1_000_000_000_000_000_000;
 
+const simulationSpeedButton = document.getElementById("simulation-speed-button");
 const simulationName = document.getElementById("simulation-name");
 const canvas = document.getElementById("canvas");
 const canvas_container = document.getElementById("canvas-container");
@@ -173,6 +177,20 @@ const ctx = canvas.getContext("2d");
 let pts = [];
 let bodies = [];
 let simulation;
+
+let paused = false;
+
+simulationSpeedButton.onclick = onSpeedButtonClicked;
+
+function onSpeedButtonClicked() {
+    paused = !paused;
+
+    if (paused) {
+        simulationSpeedButton.innerHTML = "Play Simulation";
+    } else {
+        simulationSpeedButton.innerHTML = "Pause Simulation";
+    }
+}
 
 function onAnimationFrame() {
     syncCanvasSize();
@@ -195,7 +213,8 @@ function applySimulation(s) {
 }
 
 function update() {
-    bodies.forEach(b => updateBody(b));
+    if (!paused)
+        bodies.forEach(b => updateBody(b));
 }
 
 function syncCanvasSize() {
