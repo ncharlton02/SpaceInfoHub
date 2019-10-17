@@ -8,7 +8,7 @@ const simulations = [
     },
     {
         "name": "Unstable Binary System",
-        "onInit": function(){
+        "onInit": function () {
             createBody("Star 2", 5_000_000_000, 25, 300, 350, "yellow", 0, 3);
             createBody("Star 2", 5_000_000_000, 25, 500, 350, "yellow", 0, -3);
             createBody("Planet", 100_000, 10, 100, 350, "orange", 0, 3.5);
@@ -16,7 +16,7 @@ const simulations = [
     },
     {
         "name": "Elliptical Planets (No Collision)",
-        "onInit": function(){
+        "onInit": function () {
             createBody("Planet 1", 1000, 10, 400, 50, "green", -3, 0);
             createBody("Planet 2", 1000, 10, 400, 50, "orange", -2.8, 0);
             createBody("Planet 3", 1000, 10, 400, 50, "red", -2.5, 0);
@@ -29,7 +29,7 @@ const simulations = [
     },
     {
         "name": "Multiple Planets",
-        "onInit": function(){
+        "onInit": function () {
             createBody("Planet 1", 100_000, 10, 350, 350, "blue", 0, 8.2);
             createBody("Planet 2", 100_000, 10, 300, 350, "red", 0, 6.2);
             createBody("Planet 3", 100_000, 10, 200, 350, "green", 0, 4.2);
@@ -37,16 +37,120 @@ const simulations = [
             createBody("Sun", 5_000_000_000, 25, 400, 350, "yellow", 0, 0);
         }
     },
+    {
+        "name": "Custom Simulation",
+        "onInit": function () {
+            simulationBuilder.style = "";
+            buildCustomSimulation();
+        },
+        "onEnd": function () {
+            simulationBuilder.style = "display:none";
+        }
+    },
 ]
+//
+// Custom Simulation Stuff
+// 
+
+let blockText = `   
+<form class="simulation-form p-3 m-3">
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Name</h5>
+        <input id="body-name-box" value="Name" style="display:inline-block" type="text">
+    </div>
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Color</h5>
+        <input id="body-color-box" value="#FF0000" style="display:inline-block" type="color">
+    </div>
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Mass</h5>
+        <input id="body-mass-box" value="100" style="display:inline-block" type="number">
+    </div>
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Radius</h5>
+        <input id="body-radius-box" value="20" style="display:inline-block" type="number">
+    </div>
+    <div class="pt-4">
+        <h5 class="pr-3" style="display:inline-block">Initial X</h5>
+        <input id="body-ix-box" value="100" style="display:inline-block" type="number">
+    </div>
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Initial Y</h5>
+        <input id="body-iy-box" value="100" style="display:inline-block" type="number">
+    </div>
+    <div class="pt-4">
+        <h5 class="pr-3" style="display:inline-block">Initial Vel-X</h5>
+        <input id="body-ivelx-box" value="0" style="display:inline-block" type="number">
+    </div>
+    <div>
+        <h5 class="pr-3" style="display:inline-block">Initial Vel-Y</h5>
+        <input id="body-ively-box" value="0" style="display:inline-block" type="number">
+    </div>
+</form>`;
+
+const simulationBuilder = document.getElementById("simulation-builder");
+const bodyBuilderContainer = document.getElementById("body-builder-container");
+addBodyToBuilder();
+
+function addBodyToBuilder() {
+    bodyBuilderContainer.insertAdjacentHTML("beforeend", blockText);
+}
+
+function clearBodyBuilder() {
+    bodyBuilderContainer.innerHTML = blockText;
+}
+
+function buildCustomSimulation() {
+    let bodyForms = bodyBuilderContainer.getElementsByClassName("simulation-form");
+
+    Array.from(bodyForms).forEach(form => parseBodyForm(form));
+
+    paused = false;
+    simulationSpeedButton.innerHTML = "Pause Simulation";
+}
+
+function parseBodyForm(form) {
+    function nonNull(x) {
+        if (!x) {
+            throw new Error();
+        }
+
+        return x;
+    }
+
+    try {
+        let name = nonNull(form.querySelector("#body-name-box").value);
+        let color = nonNull(form.querySelector("#body-color-box").value);
+        let mass = nonNull(form.querySelector("#body-mass-box").value);
+        let radius = nonNull(form.querySelector("#body-radius-box").value);
+        let initalX = nonNull(form.querySelector("#body-ix-box").value);
+        let initalY = nonNull(form.querySelector("#body-iy-box").value);
+        let initalVelX = nonNull(form.querySelector("#body-ivelx-box").value);
+        let initalVelY = nonNull(form.querySelector("#body-ively-box").value);
+
+        createBody(name, mass, radius, initalX, initalY, color, initalVelX, initalVelY);
+    } catch (e) {
+        console.log(e);
+        form.style = "border: red solid thin";
+
+        return;
+    }
+
+    form.style = "";
+}
+
+//
+// Generic Code
+//
 
 const simulationSelect = document.getElementById("simulation-selctor");
 
 initSimulationSelector();
 
-function initSimulationSelector(){
+function initSimulationSelector() {
     let html = [];
 
-    for(var i = 0; i < simulations.length; i++){
+    for (var i = 0; i < simulations.length; i++) {
         html.push('<option value="' + i + '">');
         html.push(simulations[i].name);
         html.push("</option>");
@@ -55,7 +159,7 @@ function initSimulationSelector(){
     simulationSelect.innerHTML = html.join("");
 }
 
-function onSimulationSelected(){
+function onSimulationSelected() {
     applySimulation(simulations[simulationSelect.value]);
 }
 
@@ -65,6 +169,7 @@ function onSimulationSelected(){
 const distanceScale = 100_000;
 const massScale = 1_000_000_000_000_000_000;
 
+const simulationSpeedButton = document.getElementById("simulation-speed-button");
 const simulationName = document.getElementById("simulation-name");
 const canvas = document.getElementById("canvas");
 const canvas_container = document.getElementById("canvas-container");
@@ -72,6 +177,20 @@ const ctx = canvas.getContext("2d");
 let pts = [];
 let bodies = [];
 let simulation;
+
+let paused = false;
+
+simulationSpeedButton.onclick = onSpeedButtonClicked;
+
+function onSpeedButtonClicked() {
+    paused = !paused;
+
+    if (paused) {
+        simulationSpeedButton.innerHTML = "Play Simulation";
+    } else {
+        simulationSpeedButton.innerHTML = "Pause Simulation";
+    }
+}
 
 function onAnimationFrame() {
     syncCanvasSize();
@@ -82,6 +201,9 @@ function onAnimationFrame() {
 }
 
 function applySimulation(s) {
+    if (simulation && simulation.onEnd)
+        simulation.onEnd();
+
     simulation = s;
     bodies = [];
     pts = [];
@@ -91,7 +213,8 @@ function applySimulation(s) {
 }
 
 function update() {
-    bodies.forEach(b => updateBody(b));
+    if (!paused)
+        bodies.forEach(b => updateBody(b));
 }
 
 function syncCanvasSize() {

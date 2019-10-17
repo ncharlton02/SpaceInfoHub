@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet">
 
     <style>
-        #controlBox select{
+        #controlBox select {
             border-radius: 5px;
             font-weight: bold;
             background: black;
@@ -24,12 +24,12 @@
             outline: none;
         }
 
-        #controlBox select option{
+        #controlBox select option {
             color: red;
             outline: none;
         }
 
-        #controlBox button{
+        #controlBox button {
             border-radius: 5px;
             font-weight: bold;
             background: black;
@@ -51,17 +51,34 @@
         </nav>
     </header>
 
-    <div class="mx-5">
+    <div class="mx-5 mb-3">
         <h3 id="simulation-name" class="pb-3">Current Simulation: Planet</h3>
 
         <div id="controlBox" style="display:block">
-            <select class="px-3 py-1" onchange="onSimulationSelected()" id="simulation-selctor"></select>
-            <button class="mx-2 px-3" onclick="applySimulation(simulation)">Reset Simulation</button>
+            <select class="px-3 py-1 mx-2" onchange="onSimulationSelected()" id="simulation-selctor"></select>
+            <button class="px-3 mx-2" onclick="applySimulation(simulation)">Reset Simulation</button>
+            <button class="px-3 mx-2" id="simulation-speed-button">Pause Simulation</button>
         </div>
     </div>
 
+    <div id="simulation-builder" class="mx-5 my-5" style="display:none">
+        <h3 class="pb-3">Simulation Builder</h3>
 
-    <div id="canvas-container" class="w-100 h-100">
+        <div id="controlBox" style="display:block">
+                <button class="mx-2 px-3" onclick="applySimulation(simulation)">Start Simulation</button>
+                <button class="mx-2 px-3" onclick="addBodyToBuilder()">Add Body</button>
+                <button class="mx-2 px-3" onclick="clearBodyBuilder()">Reset Builder (Clear Bodies)</button>
+            </div>
+        <div id="">
+            <div class="container-fluid">
+                <div class="row" id="body-builder-container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvas-container" class="border w-100 h-100">
         <canvas id="canvas">
 
         </canvas>
