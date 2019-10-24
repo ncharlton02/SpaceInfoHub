@@ -2,9 +2,17 @@ let planets = {};
 
 let info = [
     {
+        "id":"sun",
+        "title": "The Sun",
+        "desc": "The Star of Our Solar System",
+        "texture":"images/2k_sun.jpg",
+        "color": [.9, .4, .4, 1.0],
+        "facts": []
+    },
+    {
         "id": "mercury",
         "title": "Mercury",
-        "desc": "the sun is very bright here",
+        "desc": "The 1st Planet",
         "texture":"images/8k_mercury.jpg",
         "color": [0.725, 0.431, 0.054, 1.0],
         "facts": [
@@ -15,7 +23,7 @@ let info = [
     , {
         "id": "venus",
         "title": "Venus",
-        "desc": "Acid Rain! :(",
+        "desc": "The 2nd Planet",
         "texture":"images/8k_venus_atmosphere.jpg",
         "color": [0.976, 0.776, 0.525, 1.0],
         "facts": [
@@ -26,7 +34,7 @@ let info = [
     {
         "id": "earth",
         "title": "Earth",
-        "desc": "It has oxygen",
+        "desc": "The 3rd Planet",
         "texture":"images/8k_earth_daymap.jpg",
         "color": [0.094, 0.482, 0.105, 1.0],
         "facts": [
@@ -37,7 +45,7 @@ let info = [
     {
         "id": "mars",
         "title": "Mars",
-        "desc": "No aliens here!",
+        "desc": "The 4th Planet",
         "texture":"images/8k_mars.jpg",
         "color": [0.913, 0.160, 0.047, 1.0],
         "facts": [
@@ -48,7 +56,7 @@ let info = [
     {
         "id": "jupiter",
         "title": "Jupiter",
-        "desc": "what is that big red dot for?",
+        "desc": "The 5th Planet",
         "texture":"images/8k_jupiter.jpg",
         "color": [0.850, 0.823, 0.705, 1.0],
         "facts": [
@@ -59,7 +67,7 @@ let info = [
     {
         "id": "saturn",
         "title": "Saturn",
-        "desc": "I have ringzzzz",
+        "desc": "The 6th Planet",
         "texture":"images/8k_saturn.jpg",
         "color": [0.756, 0.407, 0.145, 1.0],
         "facts": [
@@ -70,7 +78,7 @@ let info = [
     {
         "id": "uranus",
         "title": "Uranus",
-        "desc": "obligatory Uranus joke",
+        "desc": "The 7th Planet",
         "texture":"images/2k_uranus.jpg",
         "color": [0.145, 0.505, 0.756, 1.0],
         "facts": [
@@ -81,7 +89,7 @@ let info = [
     {
         "id": "neptune",
         "title": "Neptune",
-        "desc": "I am blue!",
+        "desc": "The 8th Planet",
         "texture":"images/2k_neptune.jpg",
         "color": [0.105, 0.172, 0.552, 1.0],
         "facts": [
