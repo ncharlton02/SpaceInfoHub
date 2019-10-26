@@ -7,7 +7,14 @@ let info = [
         "desc": "The Star of Our Solar System",
         "texture": "images/2k_sun.jpg",
         "color": [.9, .4, .4, 1.0],
-        "facts": []
+        "facts": [
+            ["Radius", "433,287 mi (695,700 km)"],
+            ["Surface Gravity", "274 m/s <sup>2</sup>"],
+            ["Mass", "4.8675x10<sup>24</sup> kg"],
+            ["Volume", "9.2843x10<sup>11</sup> km<sup>3</sup>"],
+            ["Density", "5.243 g/cm<sup>3</sup>"],
+            ["Age", "Roughly 4.6 billion years"],
+        ]
     },
     {
         "id": "mercury",
@@ -18,6 +25,10 @@ let info = [
         "facts": [
             ["Radius", "1516 mi (2,440 km)"],
             ["Surface Gravity", "3.7 m/s <sup>2</sup>"],
+            ["Mass", "3.3011x10<sup>23</sup> kg"],
+            ["Volume", "6.083x10<sup>10</sup> km<sup>3</sup>"],
+            ["Density", "5.427 g/cm<sup>3</sup>"],
+            ["Orbit Length", "87 Earth Days"]
         ]
     }
     , {
@@ -29,6 +40,10 @@ let info = [
         "facts": [
             ["Radius", "3759 mi (6,051 km)"],
             ["Surface Gravity", "8.87 m/s <sup>2</sup>"],
+            ["Mass", "4.8675x10<sup>24</sup> kg"],
+            ["Volume", "6.083x10<sup>10</sup> km<sup>3</sup>"],
+            ["Density", "5.427 g/cm<sup>3</sup>"],
+            ["Orbit Length", "224 Earth Days"]
         ]
     },
     {
@@ -40,6 +55,10 @@ let info = [
         "facts": [
             ["Radius", "3759 mi (6,051 km)"],
             ["Surface Gravity", "8.87 m/s <sup>2</sup>"],
+            ["Mass", "4.8675x10<sup>24</sup> kg"],
+            ["Volume", "6.083x10<sup>10</sup> km<sup>3</sup>"],
+            ["Density", "5.427 g/cm<sup>3</sup>"],
+            ["Orbit Length", "224 Earth Days"]
         ]
     },
     {
@@ -51,6 +70,10 @@ let info = [
         "facts": [
             ["Radius", "3,958 mi (6,371 km)"],
             ["Surface Gravity", "9.807 m/s <sup>2</sup>"],
+            ["Mass", "5.972x10<sup>24</sup> kg"],
+            ["Volume", "1.083x10<sup>12</sup> km<sup>3</sup>"],
+            ["Density", "5.514 g/cm<sup>3</sup>"],
+            ["Orbit Length", "365.256 Days"]
         ]
     },
     {
@@ -62,6 +85,10 @@ let info = [
         "facts": [
             ["Radius", "3,958 mi (6,371 km)"],
             ["Surface Gravity", "9.807 m/s <sup>2</sup>"],
+            ["Mass", "5.972x10<sup>24</sup> kg"],
+            ["Volume", "1.083x10<sup>12</sup> km<sup>3</sup>"],
+            ["Density", "5.514 g/cm<sup>3</sup>"],
+            ["Orbit Length", "365.256 Days"]
         ]
     },
     {
@@ -73,6 +100,10 @@ let info = [
         "facts": [
             ["Radius", "2106 mi (3,389 km)"],
             ["Surface Gravity", "3.72 m/s <sup>2</sup>"],
+            ["Mass", "6.417x10<sup>23</sup> kg"],
+            ["Volume", "1.631x10<sup>11</sup> km<sup>3</sup>"],
+            ["Density", "3.9335 g/cm<sup>3</sup>"],
+            ["Orbit Length", "686.971 Earth Days"]
         ]
     },
     {
@@ -84,6 +115,10 @@ let info = [
         "facts": [
             ["Radius", "43,411 mi (69,911 km)"],
             ["Surface Gravity", "24.79 m/s <sup>2</sup>"],
+            ["Mass", "1.8982x10<sup>27</sup> kg"],
+            ["Volume", "1.43x10<sup>15</sup> km<sup>3</sup>"],
+            ["Density", "1.33 g/cm<sup>3</sup>"],
+            ["Orbit Length", "4,332 Earth Days (11 Years, 317 Days)"]
         ]
     },
     {
@@ -95,6 +130,10 @@ let info = [
         "facts": [
             ["Radius", "36,184 mi (58,232 km)"],
             ["Surface Gravity", "10.44 m/s <sup>2</sup>"],
+            ["Mass", "5.683x10<sup>26</sup> kg"],
+            ["Volume", "8.271x10<sup>14</sup> km<sup>3</sup>"],
+            ["Density", "0.687 g/cm<sup>3</sup>"],
+            ["Orbit Length", "10,759 Earth Days (29 Years, 174 Days)"]
         ]
     },
     {
@@ -106,6 +145,10 @@ let info = [
         "facts": [
             ["Radius", "15759 mi (25,362 km)"],
             ["Surface Gravity", "8.69 m/s <sup>2</sup>"],
+            ["Mass", "8.681x10<sup>25</sup> kg"],
+            ["Volume", "6.833x10<sup>12</sup> km<sup>3</sup>"],
+            ["Density", "1.27 g/cm<sup>3</sup>"],
+            ["Orbit Length", "30,688 Earth Days (84 Years, 28 Days)"]
         ]
     },
     {
@@ -117,6 +160,10 @@ let info = [
         "facts": [
             ["Radius", "15,299 mi (24,622 km)"],
             ["Surface Gravity", "24.79 m/s <sup>2</sup>"],
+            ["Mass", "8.681x10<sup>25</sup> kg"],
+            ["Volume", "6.833x10<sup>12</sup> km<sup>3</sup>"],
+            ["Density", "1.27 g/cm<sup>3</sup>"],
+            ["Orbit Length", "60,182 Earth Days (164 Years, 322 Days)"]
         ]
     },
     {
@@ -128,6 +175,10 @@ let info = [
         "facts": [
             ["Radius", "1,080 mi (1,738.1 km)"],
             ["Surface Gravity", "1.62 m/s <sup>2</sup>"],
+            ["Mass", "7.342x10<sup>22</sup> kg"],
+            ["Volume", "2.195x10<sup>10</sup> km<sup>3</sup>"],
+            ["Density", "3.344 g/cm<sup>3</sup>"],
+            ["Orbit Length", "27 Earth Days, 7 Hours"]
         ]
     }
 ].forEach(function (planet) {

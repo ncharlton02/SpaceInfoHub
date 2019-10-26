@@ -30,7 +30,7 @@ function insertLaunchDataIntoTable(json, table) {
         html.push("<tr>");
         html.push("<td><b>" + launch.flight_number + "<b></td>");
         html.push("<td><b>" + launch.mission_name + "<b></td>");
-        html.push("<td>" + parseMissionDate(launch.launch_date_utc) + "</td>");
+        html.push("<td>" + parseMissionDate(launch) + "</td>");
         html.push("<td><a href=\"" + link + "\" style=\"color:#6a6aFa\">Details</a></td>");
         html.push("</tr>");
     });
@@ -40,15 +40,22 @@ function insertLaunchDataIntoTable(json, table) {
 
 function parseNextLaunch(json) {
     json = JSON.parse(json);
+    let date_TBA = json.tentative_max_precision === "month";
+
     nextLaunchDate = new Date(json.launch_date_utc);
 
     nextLaunchNumberText.innerHTML = json.flight_number;
     nextLaunchNameText.innerHTML = json.mission_name;
-    nextLaunchDateText.innerHTML = nextLaunchDate.toDateString();
+    nextLaunchDateText.innerHTML = date_TBA ? "TBA" : nextLaunchDate.toDateString();
 
     let link = generateLink(json.flight_number);
     let aTag = "<a href=\"" + link + "\" style=\"color:#6a6aFa\"> More Details</a>";
     nextLaunchDetailsText.innerHTML = json.details + aTag;
+
+    if(date_TBA){
+        nextLaunchCountdownText.innerHTML = "TBA";
+        return;
+    }
 
     updateCountdown();
     setInterval(updateCountdown, 500);
@@ -73,8 +80,12 @@ function updateCountdown() {
     nextLaunchCountdownText.innerHTML = format;
 }
 
-function parseMissionDate(date_utc_str) {
-    let date = new Date(date_utc_str);
+function parseMissionDate(launch) {
+    let date = new Date(launch.launch_date_utc);
+
+    if(launch.tentative_max_precision === "month"){
+        return "TBA";
+    }
 
     return date.toDateString();
 }
