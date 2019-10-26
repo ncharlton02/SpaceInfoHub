@@ -4,8 +4,12 @@
 var cubeRotation = 0.0;
 const numLayers = 50; 
 const numSlices = 50;
+const maxSize = 600;
 
 const canvas = document.querySelector("#planet-canvas");
+canvas.width = canvas.clientWidth;
+canvas.height = canvas.clientHeight;
+
 function main() {
     const gl = canvas.getContext("webgl");
     if (!gl) {
@@ -92,6 +96,18 @@ function main() {
     }
     requestAnimationFrame(render);
 
+}
+
+function resize(canvas) {
+    var displayWidth = canvas.clientWidth > maxSize ? maxSize : canvas.clientWidth;
+    var displayHeight = canvas.clientHeight > maxSize ? maxSize : canvas.clientHeight;
+    displayHeight = displayHeight > displayWidth ? displayWidth : displayHeight;
+
+    if (canvas.width != displayWidth || canvas.height != displayHeight) {
+        console.log(canvas.clientWidth);
+        canvas.width = displayWidth;
+        canvas.height = displayHeight;
+    }
 }
 
 function initShaderProgram(gl, vsSource, fsSource){
@@ -227,6 +243,10 @@ function initBuffers(gl){
 }
 
 function drawScene(gl, programInfo, buffers, texture, deltaTime){
+    resize(gl.canvas);
+
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
     gl.clearColor(0.078, 0.078, 0.078, 1.0);
     gl.clearDepth(1.0);
     gl.enable(gl.DEPTH_TEST);
