@@ -4,7 +4,7 @@
 var cubeRotation = 0.0;
 const numLayers = 50; 
 const numSlices = 50;
-const maxSize = 600;
+const maxSize = 550;
 
 const canvas = document.querySelector("#planet-canvas");
 canvas.width = canvas.clientWidth;
