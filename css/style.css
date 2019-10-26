@@ -61,8 +61,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 25px;
-    padding-top: 15px;
-    padding-bottom: 5px;
+    padding: 25px;
     border: 1px #3a3a3a solid;
 }
 
